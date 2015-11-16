@@ -1,0 +1,24 @@
+{
+  "name": "swirl",
+  "version": "1.0.2",
+  "description": "Canvas based transition",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/designerzen/swirl"
+  },
+  "keywords": [
+    "Html5",
+    "Animation"
+  ],
+  "author": "designerzen",
+  "scripts": { 
+	  "dev" : "webpack-dev-server --inline --progress --colors" 
+	},
+  "devDependencies": {
+    "css-loader": "^0.23.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.6",
+    "webpack-dev-server": "^1.12.1"
+  },
+  "dependencies": {}
+}

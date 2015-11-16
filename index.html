@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Swirl</title>
+</head>
+
+<body>
+	
+	<img width="100%" height="auto" id="replace" src="test/images/animal-photography-tim-flach-13.png" />
+	
+	<img width="800px" height="438px" id="click-to-play" src="test/images/seal.jpg" />
+
+	<img width="600px" height="800px" id="defer" src="test/images/sheep.jpg" />
+
+	
+</body>
+
+<script type="text/javascript" src="src/swirl.js"></script>
+<script type="text/javascript" src="test/libs/dat.gui.min.js"></script>
+<script>
+
+// Canvas Swirler Hook
+window.onload = function(){
+
+	// various types of activity here...
+	
+	// Autoload and play once loaded
+	var swirl = Swirl.create("replace");
+	swirl.loadSwirl("../test/images/swirl.png");
+	//swirl.load().trigger();
+	
+	
+	// Here is an image that loads but does nnot animate until it
+	// is clicked
+	var swirlDelayed = Swirl.create("click-to-play");
+	// you can set options here before load is called...
+	//swirlDelayed.load();
+	swirlDelayed.getElement().onclick = function(){ 
+		//swirlDelayed.trigger();
+	};
+	
+	// Here is an image that loads but does nnot animate until it
+	// is clicked
+	var swirlWait = Swirl.create("defer");
+	swirlWait.getElement().onclick = function(){ 
+		//swirlWait.load().trigger();
+	};
+	
+	
+	// UI For setting up features...
+	var compositionTypes = [ 'lighter', 'xor', 'source-over' ];
+	var swirlAssets = { square:"../test/images/swirl.png" };
+	var gui = new dat.GUI();
+
+	// # 1
+	var f1 = gui.addFolder('Top Image');
+		f1.add(swirl, 'proceduralPieces', 1, 500 );
+		f1.add(swirl, 'speed', 0.01, 5 );
+		
+	var swirlGui1 = f1.addFolder('Swirl Options');
+		swirlGui1.add(swirl, 'swirlGap', 0.01, 1 );
+		swirlGui1.add(swirl, 'brushSize', 1, 20 );
+		swirlGui1.add(swirl, 'scaleVariance', 0.00001, 0.1 );
+		swirlGui1.add(swirl, 'initialScale', 0.0001, 3 );
+		//swirlGui1.add(swirl, 'displayOutline');
+		swirlGui1.add(swirl, 'composition', compositionTypes );
+		swirlGui1.add(swirl, 'loadSwirl', swirlAssets );
+		
+		f1.add(swirl, 'load');
+		f1.add(swirl, 'trigger');
+		f1.add(swirl, 'reset');
+		
+	// # 3
+	var f2 = gui.addFolder('2nd Image');
+		f2.add(swirlDelayed, 'proceduralPieces', 1, 500 );
+		f2.add(swirlDelayed, 'speed', 0.01, 5 );
+		
+	var swirlGui2 = f2.addFolder('Swirl Options');
+		swirlGui2.add(swirlDelayed, 'swirlGap', 0.01, 1 );
+		swirlGui2.add(swirlDelayed, 'brushSize', 1, 20 );
+		swirlGui2.add(swirlDelayed, 'scaleVariance', 0.00001, 0.1 );
+		swirlGui2.add(swirlDelayed, 'initialScale', 0.0001, 3 );
+		//swirlGui2.add(swirlDelayed, 'displayOutline');
+		swirlGui2.add(swirlDelayed, 'composition', compositionTypes );
+		swirlGui2.add(swirlDelayed, 'loadSwirl', swirlAssets );
+			
+		f2.add(swirlDelayed, 'load');
+		f2.add(swirlDelayed, 'trigger');
+		f2.add(swirlDelayed, 'reset');
+		
+		f2.open();
+			
+	// # 2
+	var f3 = gui.addFolder('Bottom Image');
+		f3.add(swirlWait, 'proceduralPieces', 1, 500 );
+		f3.add(swirlWait, 'speed', 0.01, 5 );
+		
+	var swirlGui3 = f3.addFolder('Swirl Options');
+		swirlGui3.add(swirlWait, 'swirlGap', 0.01, 1 );
+		swirlGui3.add(swirlWait, 'brushSize', 1, 20 );
+		swirlGui3.add(swirlWait, 'scaleVariance', 0.00001, 0.1 );
+		swirlGui3.add(swirlWait, 'initialScale', 0.0001, 3 );
+		//swirlGui3.add(swirl, 'displayOutline');
+		swirlGui3.add(swirlWait, 'composition', compositionTypes );
+		swirlGui3.add(swirlWait, 'loadSwirl', swirlAssets );
+			
+		f3.add(swirlWait, 'load');
+		f3.add(swirlWait, 'trigger');
+		f3.add(swirlWait, 'reset');
+		
+	
+		
+
+}
+</script>
+</html>
